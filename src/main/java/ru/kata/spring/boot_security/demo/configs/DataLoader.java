@@ -30,6 +30,7 @@ public class DataLoader implements ApplicationRunner {
         User woman = new User("Мария", "Петрова", 20, "marya", "marya");
         User cat = new User("Кот", "Котов", 3, "cat", "cat");
 
+
         Roles admin = new Roles("ROLE_ADMIN");
         Roles user = new Roles("ROLE_USER");
 
@@ -43,7 +44,6 @@ public class DataLoader implements ApplicationRunner {
         userService.addUser(man);
         userService.addUser(woman);
         userService.addUser(cat);
-        System.out.println();
 
     }
 }
