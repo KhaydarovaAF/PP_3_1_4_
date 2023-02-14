@@ -30,11 +30,10 @@ public class User implements UserDetails {
     private String password;
 
 
-    @ManyToMany
-    @JoinTable(
-            name = "users_roles"
-            , joinColumns = @JoinColumn(name = "user_id")
-            , inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "userid"),
+            inverseJoinColumns = @JoinColumn(name = "roleid"))
     private Set<Roles> roles;
 
     public User() {
@@ -109,7 +108,8 @@ public class User implements UserDetails {
         String result = roles.stream()
                 .map(Roles::getName)
                 .collect(Collectors.joining(", "));
-        return result;
+        String result2 = result.replace("ROLE_", "");
+        return result2;
     }
 
     @Override

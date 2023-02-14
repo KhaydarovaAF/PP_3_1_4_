@@ -15,7 +15,6 @@ public interface UserService {
 
     void addUser(User user);
 
-    void addRoles(Roles role);
 
     User getUserById(int id);
 
@@ -23,7 +22,6 @@ public interface UserService {
 
     void delete(int id);
 
-    List<Roles> getListRoles();
 
 
 }

@@ -16,15 +16,13 @@ public class Roles implements GrantedAuthority {
 
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
-
     public Roles(String name) {
         this.name = name;
     }
 
     public Roles() {
     }
+
 
     @Override
     public String getAuthority() {
@@ -66,5 +64,9 @@ public class Roles implements GrantedAuthority {
     @Override
     public int hashCode() {
         return Objects.hash(id, name);
+    }
+
+    public String getNameWithoutPrefix() {
+        return this.name.replace("ROLE_", "");
     }
 }

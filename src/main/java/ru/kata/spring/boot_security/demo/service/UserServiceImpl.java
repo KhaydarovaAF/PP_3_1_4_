@@ -43,22 +43,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public List<Roles> getListRoles() {
-        return roleRepository.findAll();
-    }
-
-    @Override
     @Transactional
     public void addUser(User user) {
         user.setPassword(passwordencoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
-    @Override
-    @Transactional
-    public void addRoles(Roles role) {
-        roleRepository.save(role);
-    }
 
     @Override
     @Transactional

@@ -6,6 +6,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 import ru.kata.spring.boot_security.demo.model.Roles;
 import ru.kata.spring.boot_security.demo.model.User;
+import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import java.util.HashSet;
@@ -15,10 +16,12 @@ import java.util.Set;
 public class DataLoader implements ApplicationRunner {
 
     private final UserService userService;
+    private final RoleService roleService;
 
     @Autowired
-    public DataLoader(UserService userService) {
+    public DataLoader(UserService userService, RoleService roleService) {
         this.userService = userService;
+        this.roleService = roleService;
     }
 
     public void run(ApplicationArguments args) {
@@ -34,8 +37,8 @@ public class DataLoader implements ApplicationRunner {
         woman.setRoles(new HashSet<>(Set.of(user)));
         cat.setRoles(new HashSet<>(Set.of(admin, user)));
 
-        userService.addRoles(admin);
-        userService.addRoles(user);
+        roleService.addRoles(admin);
+        roleService.addRoles(user);
 
         userService.addUser(man);
         userService.addUser(woman);
